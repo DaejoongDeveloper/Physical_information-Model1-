@@ -14,6 +14,7 @@ public class PhysicalRowMapper implements RowMapper<PhysicalVO>{
 	public PhysicalVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		PhysicalVO physical = new PhysicalVO();
 		physical.setSeq(rs.getInt("SEQ"));
+		physical.setName1(rs.getString("NAME1"));
 		physical.setWeight(rs.getString("WEIGHT"));
 		physical.setHeight(rs.getString("HEIGHT"));
 		physical.setBlood(rs.getString("BLOOD"));

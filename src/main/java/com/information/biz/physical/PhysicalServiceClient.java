@@ -15,9 +15,10 @@ public class PhysicalServiceClient {
 
 				// 글 추가
 				PhysicalVO vo = new PhysicalVO();
-				vo.setWeight("180");
-				vo.setHeight("70");
-				vo.setBlood("A");
+				vo.setName1("아이린");
+				vo.setWeight("200");
+				vo.setHeight("30");
+				vo.setBlood("AB");
 				vo.setGender("여자");
 				physicalService.insertPhysical(vo);
 				

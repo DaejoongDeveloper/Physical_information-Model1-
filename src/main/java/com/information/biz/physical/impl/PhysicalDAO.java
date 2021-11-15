@@ -18,11 +18,11 @@ public class PhysicalDAO {
 	private ResultSet rs = null;
 	
 	//SQL 명령어
-	private final String PHYSICAL_INSERT ="insert into physical(seq, weight, height, blood, gender) values((select nvl(max(seq), 0)+1 from physical),?,?,?,?)";
-	private final String PHYSICAL_UPDATE = "update physical set weight=?, height=?, blood=?, gender=? where seq=?";
+	private final String PHYSICAL_INSERT ="insert into physical(seq, name1, weight, height, blood, gender) values((select nvl(max(seq), 0)+1 from physical),?,?,?,?,?)";
+	private final String PHYSICAL_UPDATE = "update physical set name1=?, weight=?, height=?, blood=?, gender=? where seq=?";
 	private final String PHYSICAL_DELETE = "delete physical where seq=?";
 	private final String PHYSICAL_GET = "select * from physical where seq=?";
-	private final String PHYSICAL_LIST = "select * from physical order by seq desc";
+	private final String PHYSICAL_LIST = "select * from physical order by seq";
 	
 	//CRUD 기능의 메소드 구현
 	//등록
@@ -31,10 +31,11 @@ public class PhysicalDAO {
 		try {
 			conn = JDBCUtil.getConnection();
 			pstmt = conn.prepareStatement(PHYSICAL_INSERT);
-			pstmt.setString(1, vo.getWeight());
-			pstmt.setString(2, vo.getHeight());
-			pstmt.setString(3, vo.getBlood());
-			pstmt.setString(4, vo.getGender());
+			pstmt.setString(1, vo.getName1());
+			pstmt.setString(2, vo.getWeight());
+			pstmt.setString(3, vo.getHeight());
+			pstmt.setString(4, vo.getBlood());
+			pstmt.setString(5, vo.getGender());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,11 +49,12 @@ public class PhysicalDAO {
 		try {
 			conn = JDBCUtil.getConnection();
 			pstmt = conn.prepareStatement(PHYSICAL_UPDATE);
-			pstmt.setString(1, vo.getWeight());
-			pstmt.setString(2, vo.getHeight());
-			pstmt.setString(3, vo.getBlood());
-			pstmt.setString(4, vo.getGender());
-			pstmt.setInt(5, vo.getSeq());
+			pstmt.setString(1, vo.getName1());
+			pstmt.setString(2, vo.getWeight());
+			pstmt.setString(3, vo.getHeight());
+			pstmt.setString(4, vo.getBlood());
+			pstmt.setString(5, vo.getGender());
+			pstmt.setInt(6, vo.getSeq());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,6 +89,7 @@ public class PhysicalDAO {
 			if (rs.next()) {
 				physical = new PhysicalVO();
 				physical.setSeq(rs.getInt("SEQ"));
+				physical.setName1(rs.getString("NAME1"));
 				physical.setWeight(rs.getString("WEIGHT"));
 				physical.setHeight(rs.getString("HEIGHT"));
 				physical.setBlood(rs.getString("BLOOD"));
@@ -113,6 +116,7 @@ public class PhysicalDAO {
 			while (rs.next()) {
 				PhysicalVO physical = new PhysicalVO();
 				physical.setSeq(rs.getInt("SEQ"));
+				physical.setName1(rs.getString("NAME1"));
 				physical.setWeight(rs.getString("WEIGHT"));
 				physical.setHeight(rs.getString("HEIGHT"));
 				physical.setBlood(rs.getString("BLOOD"));

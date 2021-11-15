@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class PhysicalVO {
 	private int seq;
+	private String name1;
 	private String weight;
 	private String height;
 	private String blood;
@@ -15,6 +16,12 @@ public class PhysicalVO {
 	}
 	public void setSeq(int seq) {
 		this.seq = seq;
+	}
+	public String getName1() {
+		return name1;
+	}
+	public void setName1(String name1) {
+		this.name1 = name1;
 	}
 	public String getWeight() {
 		return weight;
@@ -54,8 +61,9 @@ public class PhysicalVO {
 	}
 	@Override
 	public String toString() {
-		return "PhysicalVO [seq=" + seq + ", weight=" + weight + ", height=" + height + ", blood=" + blood + ", gender="
+		return "PhysicalVO [seq=" + seq + ", name1=" + name1 +", weight=" + weight + ", height=" + height + ", blood=" + blood + ", gender="
 				+ gender + ", regDate=" + regDate + ", cnt=" + cnt + "]";
 	}
+
 	
 }
